@@ -1,0 +1,82 @@
+body {
+    font-family: "Arial", sans-serif;
+    color: #ffffff;
+    background-color: #141414;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background-color: #09aee5;
+    padding: 16px;
+    text-align: center;
+  }
+  .header h1 {
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .featured, .more-shows {
+    margin-bottom: 32px;
+  }
+  .featured h2, .more-shows h2 {
+    margin: 16px 0;
+    text-align: center;
+  }
+  .featured .show-list, .more-shows .show-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .featured .show-list .card, .more-shows .show-list .card {
+    background: #221f1f;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 16px;
+    width: calc(50% - 32px);
+    text-align: center;
+  }
+  .featured .show-list .card img, .more-shows .show-list .card img {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+  .featured .show-list .card h3, .more-shows .show-list .card h3 {
+    color: #ffffff;
+    margin: 16px 0;
+  }
+  .featured .show-list .card p, .more-shows .show-list .card p {
+    font-size: 1em;
+    margin: 16px 0;
+  }
+  .featured .show-list .card .card-button, .more-shows .show-list .card .card-button {
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .featured .show-list .card .card-button:hover, .more-shows .show-list .card .card-button:hover {
+    background-color: rgb(179.9285714286, 7.0714285714, 15.7142857143);
+  }
+  
+  .footer {
+    background-color: #e50914;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /*# sourceMappingURL=compile.css.map */
