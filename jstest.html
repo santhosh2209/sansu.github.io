@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Functionality</title>
+    <style>
+        .array-item {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px;
+        }
+        .highlight {
+            background-color: green;
+            color: white;
+        }
+        .found {
+            background-color: rgb(24, 199, 243);
+            color:red;
+        }
+        .deleting {
+            background-color: rgb(184, 6, 6);
+            
+        }
+    </style>
+</head>
+<body>
+    <label for="arrayItem">Enter Array Item :</label>
+    <input type="text" id="arrayItem" />
+    <button onclick="insertItem()">Insert</button>
+    <button onclick="deleteItem()">Delete</button>
+    <button onclick="findItem()">Find</button>
+    <button onclick="printValues()">Print</button>
+    <div id="arrayContainer"><h2>Array is empty</h2></div>
+    <div id="message"></div>
+
+    <script>
+  let array = [];
+let lastInsertedIndex = -1;
+
+function insertItem() {
+    const item = document.getElementById('arrayItem').value;
+    if (item) {
+        if (!array.includes(item)) {
+            array.push(item);
+            lastInsertedIndex = array.length - 1;
+            renderArray();
+        } else {
+            alert("Value already exists in the array");
+        }
+    } else {
+        alert("Please enter the value to insert");
+    }
+}
+
+ function deleteItem() {
+            const item = document.getElementById('arrayItem').value;
+            const index = array.indexOf(item);
+            const container = document.getElementById('arrayContainer');
+
+            if (item === '') {
+                alert('Please Enter the value to delete');
+                return;
+            }
+
+            if (index !== -1) {
+                const deleteItemElement = container.children[index];
+                deleteItemElement.classList.add('deleting');
+                document.getElementById('message').innerHTML = 'Deleting... This value';
+
+                // Delay to show the red background before deletion
+                setTimeout(() => {
+                    array.splice(index, 1);
+                    lastInsertedIndex = -1;
+                    renderArray();
+                    document.getElementById('message').innerHTML = '';
+                }, 1000);
+            } else {
+                alert("Entered value not present");
+            }
+        }
+
+        function findItem() {
+    const item = document.getElementById('arrayItem').value;
+    
+    if (item === '') {
+        alert('Please Enter value to find');
+        return;
+    }
+
+    const index = array.indexOf(item);
+    const container = document.getElementById('arrayContainer');
+    
+    // Reset background color for all items
+    const items = container.querySelectorAll('.array-item');
+    items.forEach(itemElement => {
+        itemElement.classList.remove('found');
+    });
+
+    if (index !== -1) {
+
+        const foundItemElement = container.children[index];
+        foundItemElement.classList.add('found');
+    } else {
+        alert('Entered Value is not found!!');
+    }
+}
+
+        function printValues() {
+    const items = document.getElementsByClassName("array-item");
+
+    // Remove all highlight classes from items
+    for (let item of items) {
+        item.classList.remove("highlight", "found", "deleting");
+    }
+
+    if (items.length === 0) {
+        alert("Please Enter value to print");
+        return;
+    }
+
+    const values = [];
+    for (let item of items) {
+        values.push(item.textContent);
+    }
+
+    console.log("Current values:", values);
+ 
+}
+
+
+        function renderArray() {
+            const container = document.getElementById('arrayContainer');
+            container.innerHTML = '';
+            array.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'array-item';
+                if (index === lastInsertedIndex) {
+                    div.classList.add('highlight');
+                }
+                div.textContent = item;
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
